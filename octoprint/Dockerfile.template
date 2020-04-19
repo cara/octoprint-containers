@@ -22,7 +22,7 @@ RUN if [ "${release}" = "latest" ]; then \
       i=0; \
       while true; do \
         i=$(expr $i + 1); \
-        release=$(curl --silent https://api.github.com/repos/foosel/OctoPrint/releases/latest | jq -r .tag_name); \
+        release=$(curl --silent -L https://api.github.com/repos/foosel/OctoPrint/releases/latest | jq -r .tag_name); \
         [ "${release}" = "null" -a $i -lt 10 ] || break;\
         echo "Cannot get release info -- retrying"; \
         sleep 10; \
